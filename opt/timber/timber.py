@@ -1,3 +1,18 @@
+# Copyright 2015 Joel Allen Luellwitz and Andrew Klapp
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 import datetime
 import sys
 
@@ -48,6 +63,7 @@ class Timber ():
             self.fatal('Log level not defined or invalid.')
 
         Timber.initialized = True
+    ### END def __init__
 
     def _msg(self, message):
         timestamp = datetime.datetime.now().strftime('%Y/%m/%d - %H:%M:%S:%f')
@@ -68,30 +84,30 @@ class Timber ():
 
     def trace(self, message):
         if self.loglevel >= 5:
-            self._msg('Trace: ' + message)
+            self._msg('Trace: %s' % message )
     ### END def trace
 
     def debug(self, message):
         if self.loglevel >= 4:
-            self._msg('Debug: ' + message)
+            self._msg('Debug: %s' % message)
     ### END def debug
 
     def info(self, message):
         if self.loglevel >= 3:
-            self._msg('Info: ' + message)
+            self._msg('Info: %s' % message)
     ### END def log
 
     def warn(self, message):
         if self.loglevel >= 2:
-            self._msg('Warn: ' + message)
+            self._msg('Warn: %s' % message)
     ### END def warn
 
     def error(self, message):
         if self.loglevel >= 1:
-            self._msg('Error: ' + message)
+            self._msg('Error: %s' % message)
     ### END def error
 
     def fatal(self, message):
         if self.loglevel <= 0:
-            self._msg('Fatal: ' + message)
+            self._msg('Fatal: %s' % message)
     ### END def fatal
