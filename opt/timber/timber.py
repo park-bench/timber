@@ -66,7 +66,7 @@ class Timber ():
     ### END def __init__
 
     def _msg(self, message):
-        timestamp = datetime.datetime.now().strftime('%Y/%m/%d - %H:%M:%S:%f')
+        timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
 
         full_message = '%s - %s' % (timestamp, message)
 
@@ -108,6 +108,6 @@ class Timber ():
     ### END def error
 
     def fatal(self, message):
-        if self.loglevel <= 0:
+        if self.loglevel >= 0:
             self._msg('Fatal: %s' % message)
     ### END def fatal
