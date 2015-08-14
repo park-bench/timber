@@ -1,0 +1,5 @@
+timber (0.1) stable; urgency=low
+
+  * Adding debuild support (painfully).
+
+ -- eviljoel <eviljoel@linux.com>  Thu, 13 Aug 2015 20:58:19 -0500

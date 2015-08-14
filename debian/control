@@ -1,0 +1,11 @@
+Source: timber
+Section: parkbench
+Priority: required
+Maintainer: eviljoel, Andrew Klapp
+#Build-Depends:
+Standards-Version: 3.9.6.1
+
+Package: timber
+Architecture: any
+Depends: python
+Description: Our daemon logger.
