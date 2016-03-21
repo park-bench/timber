@@ -1,4 +1,4 @@
-timber (0.1) stable; urgency=low
+python-timber (0.1) stable; urgency=low
 
   * Adding debuild support (painfully).
 
