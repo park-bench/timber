@@ -7,3 +7,4 @@ debian/substvars
 
 timber.egg-info/*
 
+.pybuild/*
