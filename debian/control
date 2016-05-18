@@ -1,6 +1,7 @@
 Source: python-timber
 Section: python
 Maintainer: eviljoel, Andrew Klapp
+Standards-Version: 3.9.6.1
 Build-Depends: debhelper (>=9),
                dh-python,
                python-all (>=2.6.6.3~),
