@@ -13,103 +13,33 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# TODO: Look into using a native or existing logging library.
+import logging
 
-import datetime
-import sys
+# Define trace log level
+TRACE_LEVEL_NUMBER = 5
+def trace(self, message, *args, **kws):
+    if self.isEnabledFor(TRACE_LEVEL_NUMBER):
+        self._log(TRACE_LEVEL_NUMBER, message, args, **kws)
 
-def get_instance():
-    if (Timber.instance == None):
-        raise Exception('No previous instance found, call get_instance_with_filename() first.')
-    return Timber.instance
+# Add trace log level to logging.Logger
+logging.addLevelName(TRACE_LEVEL_NUMBER, 'TRACE')
+logging.Logger.trace = trace
 
-def get_instance_with_filename(filename, loglevel):
-    returnInstance = None
-    if (Timber.instance == None):
-        Timber.instance = Timber(filename, loglevel)
-    return Timber.instance
-    
+# TODO: Consider doing this more transperently somehow?
+#   Maybe we can replace the logger.getLogger method?
 
-class Timber ():
-    instance = None
+def get_root_logger(log_level, log_file):
+    # Instantiate logger
+    logger.logging.getLogger()
+    logger.setLevel(log_level)
 
-    def __init__(self, filename, loglevel):
-        if (Timber.instance != None):
-            raise Exception('Timber instance already exists.')
-        self.filename = filename
-        self.file = None
+    # Add stdoutHandler and fileHandler
+    stdout_handler = logging.StreamHandler()
+    logger.addHandler(stdout_handler)
+    logger.info('Logger instantiated.')
 
-        # Log levels:
-        # 5 is trace
-        # 4 is debug
-        # 3 is info
-        # 2 is warn
-        # 1 is error
-        # 0 is fatal
-        if loglevel == 'trace':
-            self.loglevel = 5
-            self.info('Log level set to trace.  I hope you like reading logs.')
-        elif loglevel == 'debug':
-            self.loglevel = 4
-            self.info('Log level set to debug.')
-        elif loglevel == 'info':
-            self.loglevel = 3
-            self.info('Log level set to info.')
-        elif loglevel == 'warn':
-            self.loglevel = 2
-        elif loglevel == 'error':
-            self.loglevel = 1
-        elif loglevel == 'fatal':
-            self.loglevel = 0
-        else:
-            self.fatal('Log level not defined or invalid.')
+    file_handler = logging.fileHandler(log_file)
+    logger.addHandler(file_handler)
+    logger.info('Log file acquired.')
 
-        Timber.initialized = True
-    ### END def __init__
-
-    def _msg(self, message):
-        timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
-
-        full_message = '%s - %s' % (timestamp, message)
-
-        if sys.stdout.isatty():
-            print(full_message)
-        else:
-            try:
-                if self.file == None:
-                    self.file = open(self.filename, 'a', 0)	
-                self.file.write('%s\n' % full_message)
-            except Exception as exception:
-                print exception
-                print full_message
-    ### END def _msg
-
-    def trace(self, message):
-        if self.loglevel >= 5:
-            self._msg('Trace: %s' % message )
-    ### END def trace
-
-    def debug(self, message):
-        if self.loglevel >= 4:
-            self._msg('Debug: %s' % message)
-    ### END def debug
-
-    def info(self, message):
-        if self.loglevel >= 3:
-            self._msg('Info: %s' % message)
-    ### END def log
-
-    def warn(self, message):
-        if self.loglevel >= 2:
-            self._msg('Warn: %s' % message)
-    ### END def warn
-
-    def error(self, message):
-        if self.loglevel >= 1:
-            self._msg('Error: %s' % message)
-    ### END def error
-
-    def fatal(self, message):
-        if self.loglevel >= 0:
-            self._msg('Fatal: %s' % message)
-    ### END def fatal
+    return logger
