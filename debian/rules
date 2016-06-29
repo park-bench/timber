@@ -1,3 +1,5 @@
 #!/usr/bin/make -f
+export PYBUILD_NAME=python-timber
+
 %:
-	dh $@ 
+	dh $@ --with python2 --buildsystem=pybuild

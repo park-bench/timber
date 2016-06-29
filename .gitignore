@@ -1,3 +1,10 @@
 debian/tmp
 debian/debhelper.log
 debian/files
+debian/python*
+debian/timber.install
+debian/substvars
+
+timber.egg-info/*
+
+.pybuild/*

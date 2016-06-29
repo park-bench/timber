@@ -1,11 +1,14 @@
-Source: timber
-Section: parkbench
-Priority: required
+Source: python-timber
+Section: python
 Maintainer: eviljoel, Andrew Klapp
-#Build-Depends:
 Standards-Version: 3.9.6.1
+Build-Depends: debhelper (>=9),
+               dh-python,
+               python-all (>=2.6.6.3~),
+               python-setuptools
 
-Package: timber
-Architecture: any
-Depends: python
+Package: python-timber
+Section: python
+Architecture: all
+Depends: ${python::Depends}, ${misc::Depends}
 Description: Our daemon logger.

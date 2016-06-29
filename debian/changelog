@@ -1,3 +1,9 @@
+python-timber (0.2) stable; urgency=low
+
+  * Improved packaging.
+
+ -- Andrew Klapp <andklapp@null.net>  Thu, 13 May 2016 21:47:19 -0500
+
 timber (0.1) stable; urgency=low
 
   * Adding debuild support (painfully).
