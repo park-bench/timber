@@ -1,5 +1,7 @@
 # Timber
 
+**Timber is now deprecated in the development versions of all Park Bench software**
+
 Timber is a very basic logging library for daemons that will output to stdout if
 a terminal is attached and to a file if no terminal is attached. The first file
 location specified in a process will be the log file. All subsequent file
